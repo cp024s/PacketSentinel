@@ -1,12 +1,13 @@
+## ------------------------------------------------------------
 ## Gitignore for FILTER COFFEE
 ## Created by: Chandra prakash S
 ## Last updated: 27, Feb 2025
+## ------------------------------------------------------------
 
 ## DIRECTORIES
 ## Some files that's not needed now:
 dv/
 sim/
-tb/
 
 ## Build & output directories
 # sim/
