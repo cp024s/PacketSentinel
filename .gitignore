@@ -1,0 +1,113 @@
+## Gitignore for FILTER COFFEE
+## Created by: Chandra prakash S
+## Last updated: 27, Feb 2025
+
+## DIRECTORIES
+## Some files that's not needed now:
+dv/
+sim/
+tb/
+
+## Build & output directories
+# sim/
+# work/
+# build/
+# reports/
+# logs/
+# output/
+
+## Personal folder
+personal-reference/
+
+
+# General build artifacts
+*.o
+*.out
+*.bin
+*.elf
+*.hex
+*.vvp   # Icarus Verilog compiled files
+*.a
+*.lib
+*.dmp
+
+# Simulation waveform files
+*.vcd   # Value Change Dump (Icarus, ModelSim, etc.)
+*.fsdb  # Synopsys VCS waveform dump
+*.ghw   # GTKWave waveform files
+*.lxt*
+*.wlf   # ModelSim waveform files
+*.trn   # QuestaSim transaction log
+*.log   # Generic log files
+*.rpt   # Report files
+
+# Tool-specific directories & files
+
+## Icarus Verilog (iverilog)
+*.vvp
+*.lst
+*.time
+ivl*
+
+## ModelSim / QuestaSim
+modelsim.ini
+*.wlf
+transcript
+*.mti
+
+## VCS (Synopsys)
+csrc/
+simv
+simv.daidir/
+vcs*
+.daidir
+.vcsmx*
+.vcsmxrc
+.vlogan.*
+
+## Xilinx Vivado
+*.jou
+*.str
+*.log
+*.xpr
+*.pb
+*.wdb
+*.cache/
+*.hw/
+*.runs/
+*.sim/
+*.ip_user_files/
+*.gen/
+*.xsa
+
+## Cadence Xcelium/Incisive
+INCA_libs/
+*.shm
+*.key
+*.history
+*.dsn
+*.cfg
+xcelium.d/
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*~
+*.bak
+.DS_Store  # macOS-specific
+Thumbs.db  # Windows thumbnail cache
+
+# IDE & version control-specific
+.vscode/
+.idea/
+.cdsinit
+.cds.lib
+hdl.var
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+
+

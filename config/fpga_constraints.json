@@ -1,0 +1,10 @@
+{"fpga_constraints":
+	{"max_BRAMs":"100",
+	"DRAM_maxRules":"-1",
+	"BRAM_maxRules":"-1",
+	"no_inp_to_LUTS":"6",
+	"dram_depth":"64",
+	"bram_width":"72",
+	"bram_input_size":"9"
+	}
+}

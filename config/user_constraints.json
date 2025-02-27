@@ -1,0 +1,13 @@
+{"user_constraints":
+	{ 
+	"max_false_positive_rate":0.1,
+	"ipv6":"no",
+	"srcIpCheck":"yes",
+	"dstIpCheck":"yes",
+	"protocolCheck":"yes",
+	"portCheck":"yes",
+	"useDRAM": "yes",
+	"useComparator":"no",
+	"parallelBFRequired":"no"
+	} 
+}

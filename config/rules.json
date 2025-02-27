@@ -1,0 +1,3 @@
+{"rules":[
+	{"src_ip":"192.169.1.30","dst_ip":"192.168.1.30","protocol":"30","src_port_min":"16558","src_port_max":"16558","dst_port_min":"37281","dst_port_max":"37281","action":"ACCEPT"},
+	{"src_ip":"192.169.1.40","dst_ip":"192.168.1.40","protocol":"40","src_port_min":"29386","src_port_max":"29386","dst_port_min":"38849","dst_port_max":"38849","action":"ACCEPT"}]}
