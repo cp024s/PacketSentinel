@@ -7,3 +7,13 @@
 `generate_packets.py` - to generate randomized packets for firewall.
 
 `classifier.py` - IITM packet classifier script.
+
+`init.py`
+
+`memModels.py`
+
+`rulesGenerator.py`
+
+`rulesValidator.py`
+
+`templates.py`
