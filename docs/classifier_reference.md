@@ -1,6 +1,6 @@
-# CLASFIER DOCUMENTATION
+# <p align = center> CLASFIER DOCUMENTATION </p>
 ---
-<span style="color:orange; font-weight:bold;">⚠ Warning: </span>  **This file is a reference document for `scripts/classifier.py`**
+#### <p align = center> <span style="color:orange; font-weight:bold;">⚠ Warning: This file is a reference document for `/scripts/classifier.py` </span>  </p>
 
 ## 1. Overview
 
