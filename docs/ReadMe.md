@@ -1,5 +1,6 @@
-# Shakti Firewall
+# <p align = center> Shakti Firewall </p>
 ##### A Comprehensive Hardware-Based Packet Filtering System
+---
 
 The Shakti Firewall project is an advanced research and development endeavor that focuses on the design, implementation, and optimization of a high-performance, hardware-based firewall. Developed as a dual degree project at IIT Madras under the guidance of Professor Chester Rebeiro and Professor Nitin Chandrachoodan, the project tackles the ever-growing challenge of securing high-speed networks against increasingly sophisticated cyber threats.
 
