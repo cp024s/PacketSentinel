@@ -1,4 +1,4 @@
-## TESTBENCH LOG
+## <p align = center> TESTBENCH LOG </p>
 
 #### AXI Stream
 #### Bloom filter
