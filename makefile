@@ -199,6 +199,7 @@ help:
 clean:
 	@echo "Cleaning build and simulation files..."
 	rm -rf $(BUILD_DIR) $(SIM_DIR)/*.vcd $(COMPILE_OUTPUT) $(REPORTS_DIR)/*.log obj_dir
+	rm -rf *.jou *.log
 	clear
 	@echo "Cleanup done!"
 
@@ -206,7 +207,9 @@ clean:
 # Clean Vivado target: removes Vivado-generated project files and logs
 clean_vivado:
 	@echo "Cleaning Vivado generated files..."
-	rm -rf vivado_project *.log *.jou *.str *.backup
+	rm -rf vivado_project *.log *.jou *.str *.backup 
+	rm -rf sim/
+	rm -rf /.Xil
 	clear	
 	@echo "Vivado cleanup done!"
 

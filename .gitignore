@@ -8,6 +8,7 @@
 ## Some files that's not needed now:
 dv/
 sim/
+.Xil/
 
 ## Build & output directories
 # sim/
