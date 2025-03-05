@@ -19,7 +19,7 @@ sim/
 # output/
 
 ## Personal folder
-personal-reference/
+# reference/
 
 
 # General build artifacts
