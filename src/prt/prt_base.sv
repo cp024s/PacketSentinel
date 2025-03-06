@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module PRT #(
   parameter DATA_WIDTH = 8,       // Change this to support wider data words if needed
   parameter MEM_DEPTH  = 2000,     // Depth of each table
@@ -39,7 +41,7 @@ module PRT #(
   output logic                   is_prt_slot_free,
   output logic                   RDY_is_prt_slot_free
 );
-
+//_________________________________________________________________________________________________________
   //==================================================
   // FSM state definitions
   //==================================================
@@ -55,6 +57,7 @@ module PRT #(
 
   state_t state, next_state;
   logic      current_slot; // Holds the slot being used (0 or 1)
+//_________________________________________________________________________________________________________
 
   //==================================================
   // Per-slot registers and pointers
@@ -76,6 +79,7 @@ module PRT #(
   // The table is implemented as a 2D array:
   // prt_table[slot][address]
   logic [DATA_WIDTH-1:0] prt_table [NUM_SLOTS-1:0][0:MEM_DEPTH-1];
+//_________________________________________________________________________________________________________
 
   //==================================================
   // FSM: Sequential state and register updates
@@ -150,6 +154,7 @@ module PRT #(
       endcase
     end
   end
+//_________________________________________________________________________________________________________
 
   //==================================================
   // FSM: Combinational next state logic with explicit conditions
@@ -212,17 +217,18 @@ module PRT #(
       default: next_state = S_IDLE;
     endcase
   end
+//_________________________________________________________________________________________________________
 
   //==================================================
   // Output assignments for ready signals and action values
   //==================================================
-  assign RDY_start_writing_prt_entry = (state == S_IDLE) && ((!prt_valid[0]) || (!prt_valid[1]));
-  assign RDY_write_prt_entry         = (state == S_WRITE);
+  assign RDY_start_writing_prt_entry   = (state == S_IDLE) && ((!prt_valid[0]) || (!prt_valid[1]));
+  assign RDY_write_prt_entry           = (state == S_WRITE);
   assign RDY_finish_writing_prt_entry  = (state == S_WRITE);
-  assign RDY_invalidate_prt_entry    = (state == S_IDLE);
-  assign RDY_start_reading_prt_entry = (state == S_IDLE) && prt_valid[start_reading_prt_entry_slot];
-  assign RDY_read_prt_entry          = (state == S_READ);
-  assign RDY_is_prt_slot_free        = 1'b1;
+  assign RDY_invalidate_prt_entry      = (state == S_IDLE);
+  assign RDY_start_reading_prt_entry   = (state == S_IDLE) && prt_valid[start_reading_prt_entry_slot];
+  assign RDY_read_prt_entry            = (state == S_READ);
+  assign RDY_is_prt_slot_free          = 1'b1;
 
   // The start_writing_prt_entry output returns the chosen slot.
   assign start_writing_prt_entry = current_slot;
@@ -233,9 +239,7 @@ module PRT #(
   // The read_prt_entry output concatenates the data from the table
   // and a “complete” flag indicating the end of the frame.
   // When the read pointer equals the number of bytes received, the frame is complete.
-  assign read_prt_entry = { 
-    prt_table[current_slot][rd_addr[current_slot]], 
-    (rd_addr[current_slot] == prt_bytes_rcvd[current_slot])
-  };
-
+  assign read_prt_entry = { prt_table[current_slot][rd_addr[current_slot]], (rd_addr[current_slot] == prt_bytes_rcvd[current_slot]) };
 endmodule
+
+//_________________________________________________________________________________________________________
