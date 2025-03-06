@@ -198,6 +198,3 @@ assign is_prt_slot_free = (!prt_valid[0] || !prt_valid[1]);
 - Checks for **free slots**.
 
 ---
-
-### **Final Thoughts**
-This module **efficiently manages** reading/writing in two slots while tracking **validity and completion**. It **ensures parallel processing** and **sequential read/write access**, making it ideal for **packet-based systems**. 🚀

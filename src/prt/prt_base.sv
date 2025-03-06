@@ -1,4 +1,4 @@
-module mkPRT #(
+module PRT #(
   parameter DATA_WIDTH = 8,       // Change this to support wider data words if needed
   parameter MEM_DEPTH  = 2000,     // Depth of each table
   parameter NUM_SLOTS  = 2         // Number of PRT slots (fixed to 2 in this design)
