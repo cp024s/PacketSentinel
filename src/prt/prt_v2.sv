@@ -46,6 +46,7 @@ module PRT #(
   // Data transfer: while EN_read_prt_entry is high, one byte is output per clock cycle.
   input  logic                          EN_read_prt_entry,
   output logic                          RDY_read_prt_entry,
+
   // The read bus is DATA_WIDTH+1 bits wide. The extra MSB indicates if the read is complete.
   output logic [DATA_WIDTH:0]           read_prt_entry,
   
@@ -280,10 +281,10 @@ module PRT #(
   // Ready Signal Generation (Handshake Acknowledgement)
   //====================================================================
   // For start-type transactions, a one-cycle ready pulse is issued on state entry.
-  assign RDY_start_writing_prt_entry  = (state == S_WRITE_START)    ;
-  assign RDY_finish_writing_prt_entry = (state == S_WRITE_FINISH)   ;
-  assign RDY_start_reading_prt_entry  = (state == S_READ_START)     ;
-  assign RDY_invalidate_prt_entry     = (state == S_INVALIDATE_INIT);
+  assign RDY_start_writing_prt_entry  = (state == S_WRITE_START)    && state_entry;
+  assign RDY_finish_writing_prt_entry = (state == S_WRITE_FINISH)   && state_entry;
+  assign RDY_start_reading_prt_entry  = (state == S_READ_START)     && state_entry;
+  assign RDY_invalidate_prt_entry     = (state == S_INVALIDATE_INIT) && state_entry;
   
   // For data-transfer states, the ready signal is continuously asserted.
   assign RDY_write_prt_entry = (state == S_WRITE);

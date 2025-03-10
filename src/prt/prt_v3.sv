@@ -1,5 +1,5 @@
 `timescale 1ns/1ps
-//______________________________________________________________________________________
+
 module PRT #(
   parameter DATA_WIDTH = 8,           // Data bus width (1 byte)
   parameter MEM_DEPTH  = 1518,         // Maximum number of words per packet (e.g., full Ethernet frame)
@@ -25,6 +25,7 @@ module PRT #(
   input  logic                          EN_finish_writing_prt_entry,
   output logic                          RDY_finish_writing_prt_entry,
   
+
   //====================================
   // ----- Invalidate Transaction ------
   //====================================
@@ -33,6 +34,7 @@ module PRT #(
   output logic                          RDY_invalidate_prt_entry,
   input  logic [$clog2(NUM_SLOTS)-1:0]  invalidate_prt_entry_slot,
 
+  
   //====================================
   // -------- Read Transaction ---------
   //====================================
@@ -44,7 +46,6 @@ module PRT #(
   // Data transfer: while EN_read_prt_entry is high, one byte is output per clock cycle.
   input  logic                          EN_read_prt_entry,
   output logic                          RDY_read_prt_entry,
-
   // The read bus is DATA_WIDTH+1 bits wide. The extra MSB indicates if the read is complete.
   output logic [DATA_WIDTH:0]           read_prt_entry,
   
@@ -55,13 +56,11 @@ module PRT #(
   output logic                          is_prt_slot_free,
   output logic                          RDY_is_prt_slot_free
 );
-//______________________________________________________________________________________
 
-  //====================================
-  // ---------- State Machine ----------
-  //====================================
-
-    typedef enum logic [2:0] {
+  //====================================================================
+  // FSM State Definitions
+  //====================================================================
+  typedef enum logic [2:0] {
     S_IDLE,            // Waiting for any enable signal
     S_WRITE_START,     // Allocate a free slot and initialize write pointers/counters
     S_WRITE,           // Write packet data byte-by-byte
@@ -70,10 +69,9 @@ module PRT #(
     S_READ,            // Read packet data byte-by-byte
     S_INVALIDATE_INIT, // Initialize invalidation (clear) of a slot
     S_INVALIDATE_RUN   // Sequentially clear the slot memory
-    } state_t;
-
-    state_t state, next_state;
-//______________________________________________________________________________________
+  } state_t;
+  
+  state_t state, next_state;
 
   // "state_entry" is a one–cycle pulse asserted when a state transition occurs.
   logic state_entry;
@@ -85,7 +83,6 @@ module PRT #(
     else
       state_entry <= 1'b0;
   end
-//______________________________________________________________________________________
 
   //====================================================================
   // Per–Slot Registers and Memory
@@ -108,7 +105,6 @@ module PRT #(
   
   // current_slot holds the slot number currently accessed for writing or reading.
   logic [$clog2(NUM_SLOTS)-1:0] current_slot;
-//______________________________________________________________________________________
 
   //====================================================================
   // Free Slot Selection (Combinational)
@@ -130,7 +126,6 @@ module PRT #(
 
   assign is_prt_slot_free    = free_available;
   assign RDY_is_prt_slot_free = 1'b1;  // Always ready
-//______________________________________________________________________________________
 
   //====================================================================
   // FSM: Sequential State and Register Updates
@@ -141,8 +136,7 @@ module PRT #(
       state          <= S_IDLE;
       current_slot   <= '0;
       invalidate_ptr <= '0;
-
-      // Initialize all per-slot registers and clear the memory. --- RESET CONDITION ---
+      // Initialize all per-slot registers and clear the memory.
       for (i = 0; i < NUM_SLOTS; i = i + 1) begin
         valid[i]          <= 1'b0;
         bytes_rcvd[i]     <= 16'd0;
@@ -153,29 +147,23 @@ module PRT #(
         for (j = 0; j < MEM_DEPTH; j = j + 1) begin
           prt_table[i][j] <= '0;
         end
-      end else begin
+      end
+    end else begin
       state <= next_state;
       case (state)
         //----- Write Transaction -----
         S_WRITE_START: begin
           // Allocate the free slot and initialize write pointers and counters.
-          if (EN_start_writing_prt_entry) begin
-            $display("Allocating slot %d", free_slot);
-            current_slot              <= free_slot;
-
-            write_ptr[free_slot]      <= '0;
-            bytes_rcvd[free_slot]     <= 16'd0;
-            bytes_sent[free_slot]     <= 16'd0;
-            frame_complete[free_slot] <= 1'b0;
-          end
+          current_slot              <= free_slot;
+          write_ptr[free_slot]      <= '0;
+          bytes_rcvd[free_slot]     <= 16'd0;
+          bytes_sent[free_slot]     <= 16'd0;
+          frame_complete[free_slot] <= 1'b0;
         end
 
         S_WRITE: begin
           // When enabled, write one data byte per clock cycle.
           if (EN_write_prt_entry) begin
-            $display("Writing to slot %d: %h", current_slot, write_prt_entry_data);
-            RDY_write_prt_entry <= 1'b1;
-
             prt_table[current_slot][ write_ptr[current_slot] ] <= write_prt_entry_data;
             write_ptr[current_slot]                            <= write_ptr[current_slot] + 1;
             bytes_rcvd[current_slot]                           <= bytes_rcvd[current_slot] + 1;
@@ -184,49 +172,34 @@ module PRT #(
 
         S_WRITE_FINISH: begin
           // Finalize the write transaction.
-          if (EN_finish_writing_prt_entry) begin
-            RDY_finish_writing_prt_entry <= 1'b1;
-            $display("Write complete: slot %d", current_slot);
-
-            frame_complete[current_slot] <= 1'b1;
-            valid[current_slot]          <= 1'b1;
-          end
+          frame_complete[current_slot] <= 1'b1;
+          valid[current_slot]          <= 1'b1;
         end
 
+        //----- Read Transaction -----
         S_READ_START: begin
           // Select the requested slot and initialize read pointers.
-          if (EN_start_reading_prt_entry) begin
-            $display(" Start to read slot %d", start_reading_prt_entry_slot);
-            rdy_start_reading_prt_entry <= 1'b1;
-
-            current_slot             <= start_reading_prt_entry_slot;
-            read_ptr[current_slot]   <= '0;
-            bytes_sent[current_slot] <= 16'd0;
-          end
+          current_slot             <= start_reading_prt_entry_slot;
+          read_ptr[current_slot]   <= '0;
+          bytes_sent[current_slot] <= 16'd0;
         end
 
         S_READ: begin
           // When enabled, read one data byte per clock cycle.
           if (EN_read_prt_entry) begin
-            $display("Reading from slot %d: %h", current_slot, prt_table[current_slot][ read_ptr[current_slot] ]);
-            RDY_read_prt_entry <= 1'b1;
-
             read_ptr[current_slot]   <= read_ptr[current_slot] + 1;
             bytes_sent[current_slot] <= bytes_sent[current_slot] + 1;
           end
         end
-        
+
+        //----- Invalidate Transaction -----
         S_INVALIDATE_INIT: begin
           // Initialize the invalidation pointer.
-            if (EN_invalidate_prt_entry) begin
-                $display("Invalidating slot %d", invalidate_prt_entry_slot);
-                invalidate_ptr <= '0;
-            end
+          invalidate_ptr <= '0;
         end
 
         S_INVALIDATE_RUN: begin
           // Clear the targeted slot word-by-word.
-          $display("Invalidating slot %d: %d", invalidate_prt_entry_slot, invalidate_ptr);
           prt_table[invalidate_prt_entry_slot][invalidate_ptr] <= '0;
           if (invalidate_ptr == MEM_DEPTH - 1) begin
             valid[invalidate_prt_entry_slot]          <= 1'b0;
@@ -241,7 +214,6 @@ module PRT #(
       endcase
     end
   end
-//______________________________________________________________________________________
 
   //====================================================================
   // FSM: Next State Combinational Logic
@@ -308,10 +280,10 @@ module PRT #(
   // Ready Signal Generation (Handshake Acknowledgement)
   //====================================================================
   // For start-type transactions, a one-cycle ready pulse is issued on state entry.
-  assign RDY_start_writing_prt_entry  = (state == S_WRITE_START)    && state_entry;
-  assign RDY_finish_writing_prt_entry = (state == S_WRITE_FINISH)   && state_entry;
-  assign RDY_start_reading_prt_entry  = (state == S_READ_START)     && state_entry;
-  assign RDY_invalidate_prt_entry     = (state == S_INVALIDATE_INIT) && state_entry;
+  assign RDY_start_writing_prt_entry  = (state == S_WRITE_START)    ;
+  assign RDY_finish_writing_prt_entry = (state == S_WRITE_FINISH)   ;
+  assign RDY_start_reading_prt_entry  = (state == S_READ_START)     ;
+  assign RDY_invalidate_prt_entry     = (state == S_INVALIDATE_INIT);
   
   // For data-transfer states, the ready signal is continuously asserted.
   assign RDY_write_prt_entry = (state == S_WRITE);
@@ -326,6 +298,7 @@ module PRT #(
   // The read bus is DATA_WIDTH+1 bits wide.
   // The MSB is set high when the read pointer equals (or exceeds) the number of received bytes.
   assign read_prt_entry = (read_ptr[current_slot] >= bytes_rcvd[current_slot]) ?
-                          {1'b1, {DATA_WIDTH{1'b0}}} : {1'b0, prt_table[current_slot][read_ptr[current_slot]]};
+                          {1'b1, {DATA_WIDTH{1'b0}}} :
+                          {1'b0, prt_table[current_slot][read_ptr[current_slot]]};
 
 endmodule
