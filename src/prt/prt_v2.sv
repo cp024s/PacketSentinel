@@ -25,7 +25,7 @@ module PRT #(
   input  logic                          EN_finish_writing_prt_entry,
   output logic                          RDY_finish_writing_prt_entry,
   
-  
+
   //====================================
   // ----- Invalidate Transaction ------
   //====================================
@@ -34,7 +34,7 @@ module PRT #(
   output logic                          RDY_invalidate_prt_entry,
   input  logic [$clog2(NUM_SLOTS)-1:0]  invalidate_prt_entry_slot,
 
-
+  
   //====================================
   // -------- Read Transaction ---------
   //====================================
