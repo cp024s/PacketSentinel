@@ -23,9 +23,11 @@
 
 
 ### `prt_v2` - Version 2 with Improvements of packet reference table.
-<span style="color:red; font-weight:bold;">🚨 coverage and stuffs are YTBD</span>
+<span style="color:red;">🚨 coverage and stuffs are YTBD</span>
 
-<span style="color:red; font-weight:bold;">🚨 Error: IMPLEMENTATION IS FAILING</span>
+<span style="color:red;">🚨 Error: IMPLEMENTATION IS FAILING</span>
+
+<span style="color:orange; font-weight:bold;"> ⚠ `prt_v2` is fixed as release module as of now.</span> 
 
 - ##### Design & Code development
 <img alt="Code ready" src="https://img.shields.io/badge/Code-READY-green"> <img alt="Syntax check" src="https://img.shields.io/badge/Syntax Check-PASS-green">  <img alt="Linting" src="https://img.shields.io/badge/Linting-PASS-green"> <img alt="Lint Violations" src="https://img.shields.io/badge/Violations-0-GREEN"> 
