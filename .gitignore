@@ -6,7 +6,7 @@
 
 ## DIRECTORIES
 ## Some files that's not needed now:
-dv/
+
 sim/
 .Xil/
 
@@ -18,9 +18,6 @@ sim/
 # logs/
 # output/
 
-## Personal folder
-reference/
-src/Phase_2/
 
 
 # General build artifacts
