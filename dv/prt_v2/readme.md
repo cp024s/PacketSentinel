@@ -3,9 +3,9 @@
 ```
 tb_top (Top-Level Module)
 │
-├── PRT (DUT)  --> Instantiated inside tb_top
+├── PRT (DUT)
 │
-├── prt_if (Virtual Interface)  --> Connected to tb_top and UVM testbench
+├── prt_if (Virtual Interface)
 │
 ├── prt_test (Test)
 │   ├── prt_env (Environment)
@@ -13,18 +13,17 @@ tb_top (Top-Level Module)
 │   │   │   ├── prt_sequencer (Sequencer)
 │   │   │   ├── prt_driver (Driver)
 │   │   │   ├── prt_monitor (Monitor)
-│   │   │   ├── prt_scoreboard (Scoreboard - Can be added later)
+│   │   │   ├── prt_scoreboard (NEW!)
+│   │   │   ├── prt_coverage (NEW!)
 │   │   │
-│   │   ├── prt_cov (Coverage - Can be added later)
+│   │   ├── prt_test_sequence (Enhanced)
+│   │   │   ├── prt_write_sequence (Randomized)
+│   │   │   ├── prt_read_sequence (Randomized)
+│   │   │   ├── prt_invalidate_sequence (Randomized)
+│   │   │   ├── prt_corner_case_sequence (NEW!)
+│   │   │   ├── prt_stress_sequence (NEW!)
 │   │
-│   ├── prt_test_sequence (Test Sequence)
-│   │   ├── prt_write_sequence (Write Test Case)
-│   │   ├── prt_read_sequence (Read Test Case)
-│   │   ├── prt_invalidate_sequence (Invalidate Test Case)
-│   │   ├── prt_corner_case_sequence (Corner/Edge Cases)
-│   │   ├── prt_full_functional_sequence (Stress Testing)
-│
-├── UVM Factory & Configurations
+│   ├── prt_test (Runs sequences)
 │
 └── Simulation Control (run_test("prt_test");)
 ```

@@ -9,7 +9,7 @@
 
 sim/
 .Xil/
-
+ref/
 ## Build & output directories
 # sim/
 # work/

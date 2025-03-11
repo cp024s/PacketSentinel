@@ -6,16 +6,21 @@ class prt_transaction extends uvm_sequence_item;
   `uvm_object_utils(prt_transaction)
 
   // Operation type
-  prt_op_t op;
+  rand prt_op_t op;
+  rand bit [$clog2(2)-1:0] slot;  
+  rand int frame_length;
+  rand bit [7:0] start_value;
 
-  // For write transactions
-  int frame_length;       // number of bytes to write
-  bit [7:0] start_value;  // starting data value
+  // Constraints
+  constraint valid_frame_size { frame_length inside {[1:1518]}; } // 1-1518 bytes
+  constraint valid_start_value { start_value inside {[8'h00:8'hFF]}; } // Any byte value
 
-  // For read and invalidate transactions
-  bit [$clog2(2)-1:0] slot;  // slot number
+  // Ensure reads and invalidations happen on valid slots
+  constraint valid_read_invalidate_slot {
+    if (op == OP_READ || op == OP_INVALIDATE)
+      slot inside {0, 1};
+  }
 
-  // Constructor
   function new(string name = "prt_transaction");
     super.new(name);
   endfunction
@@ -30,8 +35,9 @@ class prt_transaction extends uvm_sequence_item;
     slot = rhs_.slot;
   endfunction
 
-  virtual function void convert2string(string &str);
-    $sformat(str, "op: %0d, frame_length: %0d, start_value: 0x%0h, slot: %0d", op, frame_length, start_value, slot);
+  virtual function string convert2string();
+    return $sformatf("op: %s, frame_length: %0d, start_value: 0x%0h, slot: %0d",
+                     op.name(), frame_length, start_value, slot);
   endfunction
 
 endclass
