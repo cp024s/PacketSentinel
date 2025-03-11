@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module PRT #(
+module PRT_v2 #(
   parameter DATA_WIDTH = 8,           // Data bus width (1 byte)
   parameter MEM_DEPTH  = 1518,         // Maximum number of words per packet (e.g., full Ethernet frame)
   parameter NUM_SLOTS  = 10            // Number of available packet storage slots
