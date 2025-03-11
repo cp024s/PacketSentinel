@@ -24,6 +24,7 @@
 
 ### `prt_v2` - Version 2 with Improvements of packet reference table.
 <span style="color:red; font-weight:bold;">🚨 coverage and stuffs are YTBD</span>
+
 <span style="color:red; font-weight:bold;">🚨 Error: IMPLEMENTATION IS FAILING</span>
 
 - ##### Design & Code development
@@ -36,24 +37,23 @@
 - ##### Synthesis :
 <img alt="Synthesis completed" src="https://img.shields.io/badge/Synthesis-COMPLETE-green">  
 
+######
+| Resource | Utilization| Percentage |
+|----------|------------|------------|
+| LUT      | 79,975     | 59.42%     |
+| FF       | 121,937    | 45.30%     |
+| BRAM     | 0          | 0%         |
 
-```verilog
-    - Utilization:
-        LUT  : 79975
-        FF   : 121937
-        BRAM : 0
-
-```
 
 - ##### Implementation :
 <img alt="Implementation" src="https://img.shields.io/badge/Implementation-FAIL-red"> 
 
-```verilog
-    - Utilization:
-        LUT  : 79975
-        FF   : 121937
-        BRAM : 0
-```
+| Resource | Utilization| Percentage |
+|----------|------------|------------|
+| LUT      | 79,967     | 59.77%     |
+| FF       | 121,941    | 45.57%     |
+| BRAM     | 0          | 0%         |
+
 
 - ### Advancements done in this version.
     - **handshake** mechanism is introduced (by this way, unconditional running is avoided)
