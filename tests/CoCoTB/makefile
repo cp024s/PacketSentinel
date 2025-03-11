@@ -1,3 +1,5 @@
+# This makefile is used to run the testbench for the PRT module using CoCoTB
+
 SIM = icarus
 TOPLEVEL_LANG = verilog
 VERILOG_SOURCES = $(PWD)/PRT.v
