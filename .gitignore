@@ -10,6 +10,7 @@
 sim/
 .Xil/
 ref/
+phase-2/
 ## Build & output directories
 # sim/
 # work/
