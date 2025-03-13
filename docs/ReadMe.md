@@ -1,4 +1,6 @@
 # <p align = center> Shakti Firewall </p>
+
+**FPGA Part no :** `xc7a200tfbg484-2`
 ##### A Comprehensive Hardware-Based Packet Filtering System
 ---
 

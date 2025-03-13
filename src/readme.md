@@ -27,14 +27,14 @@
 <span style="color:orange; font-weight:bold;"> ⚠ `prt_v2` is fixed as release module as of now.</span> 
 
 - ##### Design & Code development
-<img alt="Code ready" src="https://img.shields.io/badge/Code-READY-green"> <img alt="Syntax check" src="https://img.shields.io/badge/Syntax Check-PASS-green">  <img alt="Linting" src="https://img.shields.io/badge/Linting-PASS-green"> <img alt="Lint Violations" src="https://img.shields.io/badge/Violations-0-GREEN"> 
+    <img alt="Code ready" src="https://img.shields.io/badge/Code-READY-green"> <img alt="Syntax check" src="https://img.shields.io/badge/Syntax Check-PASS-green">  <img alt="Linting" src="https://img.shields.io/badge/Linting-PASS-green"> <img alt="Lint Violations" src="https://img.shields.io/badge/Violations-0-GREEN"> 
 
 - ##### Simulation & Verification :
-<img alt="Simulation" src="https://img.shields.io/badge/Simulation-PASS-green">  <img alt="Waveform Analysis" src="https://img.shields.io/badge/Waveform Analysis-DONE-orange"> <img alt="Coverage" src="https://img.shields.io/badge/Coverage-0-GREEN"> <should be checked>
+    <img alt="Simulation" src="https://img.shields.io/badge/Simulation-PASS-green">  <img alt="Waveform Analysis" src="https://img.shields.io/badge/Waveform Analysis-DONE-orange"> <img alt="Coverage" src="https://img.shields.io/badge/Coverage-0-GREEN"> <should be checked>
 
 
 - ##### Synthesis :
-<img alt="Synthesis completed" src="https://img.shields.io/badge/Synthesis-COMPLETE-green">  
+    <img alt="Synthesis completed" src="https://img.shields.io/badge/Synthesis-COMPLETE-green">  
 
 ######
 | Resource | Utilization| Percentage |
@@ -44,7 +44,9 @@
 | BRAM     | 0          | 0%         |
 
 - ##### Implementation :
-<img alt="Implementation" src="https://img.shields.io/badge/Implementation-FAIL-red"> 
+    <img alt="Implementation" src="https://img.shields.io/badge/Implementation-FAIL-red"> 
+
+    - **Cause:** Junction temperature exceeded to `103°c` due to excessicve resource utilization
 
 - ### Advancements done in this version.
     - **handshake** mechanism is introduced (by this way, unconditional running is avoided)
@@ -61,10 +63,10 @@
 <img alt="Code ready" src="https://img.shields.io/badge/Code-READY-green"> <img alt="Syntax check" src="https://img.shields.io/badge/Syntax Check-PASS-green">  <img alt="Linting" src="https://img.shields.io/badge/Linting-PASS-green"> <img alt="Lint Violations" src="https://img.shields.io/badge/Violations-0-GREEN"> 
 
 - ##### Simulation & Verification :
-<img alt="Simulation" src="https://img.shields.io/badge/Simulation-PASS-green">  <img alt="Waveform Analysis" src="https://img.shields.io/badge/Waveform Analysis-DONE-orange">
+<img alt="Simulation" src="https://img.shields.io/badge/Simulation-YTBD-yellow">  <img alt="Waveform Analysis" src="https://img.shields.io/badge/Waveform Analysis-YTBD-yellow">
 
 - ##### Synthesis :
-<img alt="Synthesis completed" src="https://img.shields.io/badge/Synthesis-COMPLETE-green">  
+<img alt="Synthesis completed" src="https://img.shields.io/badge/Synthesis-YTBD-yellow">  
 
 | Resource | Utilization| Percentage |
 |----------|------------|------------|
