@@ -58,13 +58,13 @@
 ### `prt_v3` - V3 of Packet reference table with BRAM integrated.
 
 - ##### Design & Code development
-<img alt="Code ready" src="https://img.shields.io/badge/Code-READY-green"> <img alt="Syntax check" src="https://img.shields.io/badge/Syntax Check-PASS-green">  <img alt="Linting" src="https://img.shields.io/badge/Linting-PASS-green"> <img alt="Lint Violations" src="https://img.shields.io/badge/Violations-0-GREEN"> 
+    <img alt="Code ready" src="https://img.shields.io/badge/Code-READY-green"> <img alt="Syntax check" src="https://img.shields.io/badge/Syntax Check-PASS-green">  <img alt="Linting" src="https://img.shields.io/badge/Linting-PASS-green"> <img alt="Lint Violations" src="https://img.shields.io/badge/Violations-0-GREEN"> 
 
 - ##### Simulation & Verification :
-<img alt="Simulation" src="https://img.shields.io/badge/Simulation-YTBD-yellow">  <img alt="Waveform Analysis" src="https://img.shields.io/badge/Waveform Analysis-YTBD-yellow">
+    <img alt="Simulation" src="https://img.shields.io/badge/Simulation-YTBD-yellow">  <img alt="Waveform Analysis" src="https://img.shields.io/badge/Waveform Analysis-YTBD-yellow">
 
 - ##### Synthesis :
-<img alt="Synthesis completed" src="https://img.shields.io/badge/Synthesis-YTBD-yellow">  
+    <img alt="Synthesis completed" src="https://img.shields.io/badge/Synthesis-YTBD-yellow">  
 
 | Resource | Utilization| Percentage | Total     |
 |----------|------------|------------|-----------|
