@@ -35,11 +35,11 @@
     <img alt="Synthesis completed" src="https://img.shields.io/badge/Synthesis-COMPLETE-green">  
 
 ######
-| Resource | Utilization| Percentage |
-|----------|------------|------------|
-| LUT      | 79,975     | 59.42%     |
-| FF       | 121,937    | 45.30%     |
-| BRAM     | 0          | 0%         |
+| Resource | Utilization| Percentage | Total     |
+|----------|------------|------------|-----------|
+| LUT      | 79,975     | 59.42%     | 134600    |
+| FF       | 121,937    | 45.30%     | 2692200   |
+| BRAM     | 0          | 0%         | 365       |
 
 - ##### Implementation :
     <img alt="Implementation" src="https://img.shields.io/badge/Implementation-FAIL-red"> 
@@ -66,11 +66,11 @@
 - ##### Synthesis :
 <img alt="Synthesis completed" src="https://img.shields.io/badge/Synthesis-YTBD-yellow">  
 
-| Resource | Utilization| Percentage |
-|----------|------------|------------|
-| LUT      | 174        | 0.13%      |
-| FF       | 99         | 0.04%      |
-| BRAM     | 1          | 0.27%      |
+| Resource | Utilization| Percentage | Total     |
+|----------|------------|------------|-----------|
+| LUT      | 174        | 0.13%      | 134600    |
+| FF       | 99         | 0.04%      | 2692200   |
+| BRAM     | 1          | 0.27%      | 365       |
 
 - ### Advancemens done in this version
     - **BRAM** is introduced for the memory addess.
