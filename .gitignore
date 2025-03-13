@@ -11,14 +11,14 @@ sim/
 .Xil/
 ref/
 phase-2/
+results/
+build/
+output/
+work/
+reports/
+logs/
 
 ## Build & output directories
-# sim/
-# work/
-# build/
-# reports/
-# logs/
-# output/
 
 
 
