@@ -198,8 +198,8 @@ help:
 # Clean target: removes generated files and directories (open source)
 clean:
 	@echo "Cleaning build and simulation files..."
-	rm -rf $(BUILD_DIR) $(SIM_DIR)/*.vcd $(COMPILE_OUTPUT) $(REPORTS_DIR)/*.log obj_dir
-	rm -rf *.jou *.log
+	rm -rf $(BUILD_DIR) $(SIM_DIR)/*.vcd $(COMPILE_OUTPUT) $(REPORTS_DIR)/*.log obj_dir 
+	rm -rf *.jou *.log -p
 	clear
 	@echo "Cleanup done!"
 
