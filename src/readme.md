@@ -70,7 +70,7 @@
 |----------|------------|------------|
 | LUT      | 174        | 0.13%      |
 | FF       | 99         | 0.04%      |
-| BRAM     | 0          | 0.27%      |
+| BRAM     | 1          | 0.27%      |
 
 - ### Advancemens done in this version
     - **BRAM** is introduced for the memory addess.
