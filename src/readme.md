@@ -89,3 +89,17 @@
 <span style="color: orange; font-weight: bold; text-align: center; font-size: 17px;">
     PRT module has been completed and Implementation was done on <code>13, March</code>
 </span>
+
+---
+## 5. FIFO module
+
+#### Status:
+
+- ##### design & code developement
+    <img alt="Code ready" src="https://img.shields.io/badge/Code-READY-green"> <img alt="Syntax check" src="https://img.shields.io/badge/Syntax Check-PASS-green">
+
+- ##### Simulation & Verification
+    <img alt="Simulation" src="https://img.shields.io/badge/Simulation-DONE-green">  <img alt="Waveform Analysis" src="https://img.shields.io/badge/Waveform Analysis-DONE-green">
+
+- ##### Synthesis
+    <img alt="Synthesis completed" src="https://img.shields.io/badge/Synthesis-DONE-green"> 
