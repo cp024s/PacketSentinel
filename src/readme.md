@@ -11,15 +11,22 @@
 ---
 ## 3. Master packet dealer
 
+#### `mpd_base` - V1 of Master packet dealer
+- base version of Master packet dealer with `MPD` module logic without `AXI stream` and other module integration
+
+- ##### Advancements to be done in the next version:
+    - Refinement of `MPD`'s FSM.
+    - Addition of `AXI stream` to the `MPD` module.
+    
 
 ---
 ## 4. Packet Reference Table
 
-### `prt_base` - V1 of packet reference table.
+#### `prt_base` - V1 of packet reference table.
 - PRT with all the FSM states was written and the `base version` is been tested with `prt_tb_1.sv` and `prt_tb_2.sv` **(refer testbench log for testbench related queries)**
 
 ---
-### `prt_v2` - V2 with Improvements of packet reference table.
+#### `prt_v2` - V2 with Improvements of packet reference table.
 - <span style="color:red;">🚨 coverage and stuffs are YTBD</span>
 - <span style="color:red;">🚨 Error: IMPLEMENTATION IS FAILING</span>
 - <span style="color:orange; font-weight:bold;"> ⚠ `prt_v3` is fixed as release module as of now.</span> 
@@ -79,6 +86,6 @@
 
 <br><span style = "color:red;"> All the improvements that is said by `Nithish` has been implemented and the things that are not done have a **valid** reason</span> 
 
-<span style="color: orange; font-weight: bold; text-align: center; font-size: 20px;">
-    PRT module has been completed and Implementation was done on <code>13, Mar</code>
+<span style="color: orange; font-weight: bold; text-align: center; font-size: 17px;">
+    PRT module has been completed and Implementation was done on <code>13, March</code>
 </span>
