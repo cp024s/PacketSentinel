@@ -30,8 +30,8 @@
 | 14, Mar  | ----- LEAVE -----                                                     |                                |
 | 15, Mar  | ----- LEAVE -----                                                     |                                |
 | 16, Mar  | ----- SUNDAY -----                                                    |                                |
-| 17, Mar  | Base code development for MPD module                                  |                                |
-| 18, Mar  | Base code development for MPD module                                  |                                |
+| 17, Mar  | Design code and testbench development for FIFO module (MPD)           |                                |
+| 18, Mar  | Waveform analysis for FIFO and design development for MPD             |                                |
 | 19, Mar  |                                                                       |                                |
 | 20, Mar  |                                                                       |                                |
 | 21, Mar  |                                                                       |                                |
