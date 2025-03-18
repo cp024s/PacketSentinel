@@ -73,11 +73,13 @@
 - ##### Synthesis :
     <img alt="Synthesis completed" src="https://img.shields.io/badge/Synthesis-YTBD-yellow">  
 
-| Resource | Utilization| Percentage | Total     |
-|----------|------------|------------|-----------|
-| LUT      | 174        | 0.13%      | 134600    |
-| FF       | 99         | 0.04%      | 2692200   |
-| BRAM     | 1          | 0.27%      | 365       |
+| Resource | Estimation | Available  | Utilization % |
+|----------|------------|------------|---------------|
+| LUT      | 175        | 134600     | 0.13          |
+| FF       | 99         | 2692200    | 0.04          |
+| BRAM     | 1          | 365        | 0.27          |
+| IO       | 36         | 285        | 12.63         |
+| BUFG     | 1          | 32         | 3.13          |
 
 - ### Advancemens done in this version
     - **BRAM** is introduced for the memory addess.

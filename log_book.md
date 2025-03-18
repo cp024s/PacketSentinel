@@ -26,13 +26,13 @@
 | 10, Mar  | v3 Code integration with BRAM module                                  |                                |
 | 11, Mar  | Testbench development for PRT v3 module                               |                                |
 | 12, Mar  | Debugging the PRT Design code                                         |                                |
-| 13, Mar  | waveform analysis of PRT v3 module                                    | Wavefrom analysis and debugging|
+| 13, Mar  | Waveform analysis of PRT v3 module                                    | Wavefrom analysis and debugging|
 | 14, Mar  | ----- LEAVE -----                                                     |                                |
 | 15, Mar  | ----- LEAVE -----                                                     |                                |
 | 16, Mar  | ----- SUNDAY -----                                                    |                                |
 | 17, Mar  | Design code and testbench development for FIFO module (MPD)           |                                |
 | 18, Mar  | Waveform analysis for FIFO and design development for MPD             |                                |
-| 19, Mar  |                                                                       |                                |
+| 19, Mar  | Code analysis and debugging for PRT module                            |                                |
 | 20, Mar  |                                                                       |                                |
 | 21, Mar  |                                                                       |                                |
 | 22, Mar  |                                                                       |                                |
