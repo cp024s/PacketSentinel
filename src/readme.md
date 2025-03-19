@@ -7,7 +7,32 @@
 
 
 ## 2. Bloom Filter
+####  `bloom_filter` - V1 of Bloom filter
+- Base version of `Bloom filter` with BRAM integration done.
+- Bloom filter: `./src/bloom_filter/bram/bram_2.sv`
 
+- ##### Advancements to be done
+    - Refinement of Codebase.
+    - Optimization of FSM logic
+
+- ##### Design & Code development
+    <img alt="Code ready" src="https://img.shields.io/badge/Code-READY-green"> <img alt="Syntax check" src="https://img.shields.io/badge/Syntax Check-PASS-green">  <img alt="Linting" src="https://img.shields.io/badge/Linting-PASS-green"> <img alt="Lint Violations" src="https://img.shields.io/badge/Violations-0-GREEN"> 
+
+- ##### Simulation & Verification :
+    <img alt="Simulation" src="https://img.shields.io/badge/Simulation-PASS-green">  <img alt="Waveform Analysis" src="https://img.shields.io/badge/Waveform Analysis-DONE-orange"> <img alt="Coverage" src="https://img.shields.io/badge/Coverage-0-GREEN"> <should be checked>
+
+- ##### Synthesis :
+    <img alt="Synthesis completed" src="https://img.shields.io/badge/Synthesis-COMPLETE-green"> 
+
+    | Resource | Estimation | Available  | Utilization % |
+    |----------|------------|------------|---------------|
+    | LUT      | 282        | 134600     | 0.21          |
+    | FF       | 209        | 2692200    | 0.08          |
+    | BRAM     | 0.5        | 365        | 0.14          |
+    | IO       | 36         | 285        | 12.63         |
+    | BUFG     | 1          | 32         | 3.13          |
+- ##### Implementation :
+    <img alt="Implementation completed" src="https://img.shields.io/badge/Implementation-DONE-green">  
 
 ## 3. Master packet dealer
 
