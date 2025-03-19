@@ -2,13 +2,13 @@
 # <p align = center> SOURCE FILES </p>
 
 
----
+
 ## 1. AXI Stream
 
----
+
 ## 2. Bloom Filter
 
----
+
 ## 3. Master packet dealer
 
 #### `mpd_base` - V1 of Master packet dealer
@@ -25,7 +25,7 @@
 #### `prt_base` - V1 of packet reference table.
 - PRT with all the FSM states was written and the `base version` is been tested with `prt_tb_1.sv` and `prt_tb_2.sv` **(refer testbench log for testbench related queries)**
 
----
+
 #### `prt_v2` - V2 with Improvements of packet reference table.
 - <span style="color:red;">🚨 coverage and stuffs are YTBD</span>
 - <span style="color:red;">🚨 Error: IMPLEMENTATION IS FAILING</span>
@@ -60,8 +60,7 @@
 - ### YTBD improvements.
     - **BRAM** should be implemented for efficient memory access.
     - **Dual port** concept should be implemented for sequential data access <span style="color:red;">(note: in this version, it's a one person at a time communication)</span>
-
---- 
+ 
 ### `prt_v3` - V3 of Packet reference table with BRAM integrated.
 
 - ##### Design & Code development
@@ -108,7 +107,7 @@
     PRT module has been completed and Implementation was done on <code>13, March</code>
 </span>
 
----
+
 ## 5. FIFO module
 
 #### Status:
