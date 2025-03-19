@@ -5,10 +5,23 @@ module MPD #(
     parameter NUM_SLOTS = 16
 )(
     // MPD Signals
-    input  logic                          clk,
-    input  logic                          rst,
+    input  logic                          CLK,
+    input  logic                          RST_N,
 
-    // Control signals for PRT
+    //====================================================================
+    // PRT - AXI COMMUNCATION
+    //====================================================================
+
+    //====================================================================
+    // PRT - BLOOM FILTER COMMUNCATION
+    //====================================================================
+
+
+
+    //====================================================================
+    // PRT - MPD COMMUNCATION
+    //====================================================================
+    // -------- Write Transaction Handshake --------
     output logic                          EN_start_writing_prt_entry,
     input  logic                          RDY_start_writing_prt_entry,
     input  logic [$clog2(NUM_SLOTS)-1:0]  start_writing_prt_entry,
@@ -20,10 +33,12 @@ module MPD #(
     output logic                          EN_finish_writing_prt_entry,
     input  logic                          RDY_finish_writing_prt_entry,
 
+    // -------- Invalidate Transaction Handshake --------
     output logic                          EN_invalidate_prt_entry,
     input  logic                          RDY_invalidate_prt_entry,
     output logic [$clog2(NUM_SLOTS)-1:0]  invalidate_prt_entry_slot,
 
+    // -------- Read Transaction Handshake --------
     output logic                          EN_start_reading_prt_entry,
     input  logic                          RDY_start_reading_prt_entry,
     output logic [$clog2(NUM_SLOTS)-1:0]  start_reading_prt_entry_slot,
@@ -31,12 +46,19 @@ module MPD #(
     output logic                          EN_read_prt_entry,
     input  logic                          RDY_read_prt_entry,
     input  logic [DATA_WIDTH:0]           read_prt_entry,
-
+    // -------- Free Slot Check --------
     input  logic                          is_prt_slot_free,
     input  logic                          RDY_is_prt_slot_free
 );
 
-    // Instantiate the PRT module
+//   All the internal logics, registers goes here
+
+// All the state machine logic goes here
+
+
+    //====================================================================
+    // PACKET REFERENCE TABLE (PRT) INSTANCE
+    //====================================================================
     PRT #(
         .DATA_WIDTH(DATA_WIDTH),
         .NUM_SLOTS(NUM_SLOTS)
@@ -68,6 +90,51 @@ module MPD #(
         .RDY_is_prt_slot_free (RDY_is_prt_slot_free)
     );
 
-    // MPD logic to control the PRT transactions can go here
+    //====================================================================
+    // INPUT FIFO INSTANCE
+    //====================================================================
+    fifo #(
+        .DATA_WIDTH(32),
+        .DEPTH(16),
+        .ALMOST_FULL_THRESHOLD(14),
+        .ALMOST_EMPTY_THRESHOLD(2)
+    ) ip_fifo (
+        .clk(clk),
+        .rst(rst),
+        .wr_en(wr_en),
+        .rd_en(rd_en),
+        .din(din),
+        .dout(dout),
+        .full(full),
+        .empty(empty),
+  //  .almost_full(almost_full),
+  //  .almost_empty(almost_empty),
+  //  .lookahead_valid(lookahead_valid),
+  //  .lookahead_data(lookahead_data)
+    );
+    //====================================================================
+    // OUTPUT FIFO INSTANCE
+    //====================================================================
+    fifo #(
+    .DATA_WIDTH(32),
+    .DEPTH(16),
+    .ALMOST_FULL_THRESHOLD(14),
+    .ALMOST_EMPTY_THRESHOLD(2)
+    ) op_fifo (
+    .clk(clk),
+    .rst(rst),
+    .wr_en(wr_en),
+    .rd_en(rd_en),
+    .din(din),
+    .dout(dout),
+    .full(full),
+    .empty(empty),
+  //  .almost_full(almost_full),
+  //  .almost_empty(almost_empty),
+  //  .lookahead_valid(lookahead_valid),
+  //  .lookahead_data(lookahead_data)
+);
 
+
+    // MPD's FSM states are to be given here
 endmodule
