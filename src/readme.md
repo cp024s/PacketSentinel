@@ -22,11 +22,11 @@
 ---
 ## 4. Packet Reference Table
 
-#### `prt_base` - V1 of packet reference table.
+#### `prt_base` - V1 of packet reference table. (brut force approach)
 - PRT with all the FSM states was written and the `base version` is been tested with `prt_tb_1.sv` and `prt_tb_2.sv` **(refer testbench log for testbench related queries)**
 
 ---
-#### `prt_v2` - V2 with Improvements of packet reference table.
+#### `prt_v2` - V2 with Improvements of packet reference table. (Optimal approach)
 - <span style="color:red;">🚨 coverage and stuffs are YTBD</span>
 - <span style="color:red;">🚨 Error: IMPLEMENTATION IS FAILING</span>
 - <span style="color:orange; font-weight:bold;"> ⚠ `prt_v3` is fixed as release module as of now.</span> 
@@ -52,6 +52,7 @@
     <img alt="Implementation" src="https://img.shields.io/badge/Implementation-FAIL-red"> 
 
     - **Cause:** Junction temperature exceeded to `103°c` due to excessicve resource utilization
+    - **Timing:** As the storage was implemented in the `LUT` timing was increased. $↑$
 
 - ### Advancements done in this version.
     - **handshake** mechanism is introduced (by this way, unconditional running is avoided)
@@ -62,7 +63,7 @@
     - **Dual port** concept should be implemented for sequential data access <span style="color:red;">(note: in this version, it's a one person at a time communication)</span>
 
 --- 
-### `prt_v3` - V3 of Packet reference table with BRAM integrated.
+### `prt_v3` - V3 of Packet reference table with BRAM integrated. (Advancement approach)
 
 - ##### Design & Code development
     <img alt="Code ready" src="https://img.shields.io/badge/Code-READY-green"> <img alt="Syntax check" src="https://img.shields.io/badge/Syntax Check-PASS-green">  <img alt="Linting" src="https://img.shields.io/badge/Linting-PASS-green"> <img alt="Lint Violations" src="https://img.shields.io/badge/Violations-0-green"> 
@@ -94,6 +95,7 @@
 
 - ##### Timing 
     <img alt="Implementation completed" src="https://img.shields.io/badge/WNS-4.762-blue">  <img alt="Implementation completed" src="https://img.shields.io/badge/TNS-0.0-blue">  <img alt="Implementation completed" src="https://img.shields.io/badge/WHS-0.160-blue">      <img alt="Implementation completed" src="https://img.shields.io/badge/THS-0.0-blue">
+    (should be double checked afterwards)
 
 
 
@@ -107,6 +109,8 @@
 <span style="color: orange; font-weight: bold; text-align: center; font-size: 17px;">
     PRT module has been completed and Implementation was done on <code>13, March</code>
 </span>
+    <br> <br>
+<span style = "color:red; font-weight: bold; font-size=17px;"> Testing and analysis for <code>prt_v3</code> is done by <code>Nithish</code> and approves for working on <code>19, March</span>
 
 ---
 ## 5. FIFO module
