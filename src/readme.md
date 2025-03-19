@@ -65,26 +65,42 @@
 ### `prt_v3` - V3 of Packet reference table with BRAM integrated.
 
 - ##### Design & Code development
-    <img alt="Code ready" src="https://img.shields.io/badge/Code-READY-green"> <img alt="Syntax check" src="https://img.shields.io/badge/Syntax Check-PASS-green">  <img alt="Linting" src="https://img.shields.io/badge/Linting-PASS-green"> <img alt="Lint Violations" src="https://img.shields.io/badge/Violations-0-GREEN"> 
+    <img alt="Code ready" src="https://img.shields.io/badge/Code-READY-green"> <img alt="Syntax check" src="https://img.shields.io/badge/Syntax Check-PASS-green">  <img alt="Linting" src="https://img.shields.io/badge/Linting-PASS-green"> <img alt="Lint Violations" src="https://img.shields.io/badge/Violations-0-green"> 
 
 - ##### Simulation & Verification :
-    <img alt="Simulation" src="https://img.shields.io/badge/Simulation-YTBD-yellow">  <img alt="Waveform Analysis" src="https://img.shields.io/badge/Waveform Analysis-YTBD-yellow">
+    <img alt="Simulation" src="https://img.shields.io/badge/Simulation-DONE-green">  <img alt="Waveform Analysis" src="https://img.shields.io/badge/Waveform Analysis-DONE-green">
 
 - ##### Synthesis :
-    <img alt="Synthesis completed" src="https://img.shields.io/badge/Synthesis-YTBD-yellow">  
+    <img alt="Synthesis completed" src="https://img.shields.io/badge/Synthesis-DONE-green">  
 
-| Resource | Estimation | Available  | Utilization % |
-|----------|------------|------------|---------------|
-| LUT      | 175        | 134600     | 0.13          |
-| FF       | 99         | 2692200    | 0.04          |
-| BRAM     | 1          | 365        | 0.27          |
-| IO       | 36         | 285        | 12.63         |
-| BUFG     | 1          | 32         | 3.13          |
+     | Resource | Estimation | Available  | Utilization % |
+     |----------|------------|------------|---------------|
+     | LUT      | 179        | 134600     | 0.13          |
+     | FF       | 99         | 2692200    | 0.04          |
+     | BRAM     | 1          | 365        | 0.27          |
+     | IO       | 36         | 285        | 12.63         |
+     | BUFG     | 1          | 32         | 3.13          |
+
+- ##### Implementation :
+    <img alt="Implementation completed" src="https://img.shields.io/badge/Implementation-DONE-green">  
+
+     | Resource | Estimation | Available  | Utilization % |
+     |----------|------------|------------|---------------|
+     | LUT      | 161        | 134600     | 0.13          |
+     | FF       | 99         | 2692200    | 0.04          |
+     | BRAM     | 1          | 365        | 0.27          |
+     | IO       | 36         | 285        | 12.63         |
+     | BUFG     | 1          | 32         | 3.13          |
+
+- ##### Timing 
+    <img alt="Implementation completed" src="https://img.shields.io/badge/WNS-4.762-blue">  <img alt="Implementation completed" src="https://img.shields.io/badge/TNS-0.0-blue">  <img alt="Implementation completed" src="https://img.shields.io/badge/WHS-0.160-blue">      <img alt="Implementation completed" src="https://img.shields.io/badge/THS-0.0-blue">
+
+
 
 - ### Advancemens done in this version
     - **BRAM** is introduced for the memory addess.
     - **Dual port** concept must be inplemented in `ethernet_transactor` and not in `prt` or `mpd` module <span style = "color:red;"> (this was notified only on 12, Mar)       (Explanation must be given by CP) </span> 
-    - `Resource utilization` has been brought down by impllementing `BRAM`
+    - `Resource utilization` has been brought down by implementing `BRAM`
 
 <br><span style = "color:red;"> All the improvements that is said by `Nithish` has been implemented and the things that are not done have a **valid** reason</span> 
 
