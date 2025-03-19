@@ -19,13 +19,12 @@
     - Addition of `AXI stream` to the `MPD` module.
     
 
----
+
 ## 4. Packet Reference Table
 
 #### `prt_base` - V1 of packet reference table. (brut force approach)
 - PRT with all the FSM states was written and the `base version` is been tested with `prt_tb_1.sv` and `prt_tb_2.sv` **(refer testbench log for testbench related queries)**
 
----
 #### `prt_v2` - V2 with Improvements of packet reference table.
 - <span style="color:red;">🚨 coverage and stuffs are YTBD</span>
 - <span style="color:red;">🚨 Error: IMPLEMENTATION IS FAILING</span>
@@ -62,7 +61,6 @@
     - **BRAM** should be implemented for efficient memory access.
     - **Dual port** concept should be implemented for sequential data access <span style="color:red;">(note: in this version, it's a one person at a time communication)</span>
 
---- 
 ### `prt_v3` - V3 of Packet reference table with BRAM integrated.
 
 - ##### Design & Code development
@@ -95,6 +93,7 @@
 
 - ##### Timing 
     <img alt="Implementation completed" src="https://img.shields.io/badge/WNS-4.762-blue">  <img alt="Implementation completed" src="https://img.shields.io/badge/TNS-0.0-blue">  <img alt="Implementation completed" src="https://img.shields.io/badge/WHS-0.160-blue">      <img alt="Implementation completed" src="https://img.shields.io/badge/THS-0.0-blue">
+
     (should be double checked afterwards)
 
 
