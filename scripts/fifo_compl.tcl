@@ -1,43 +1,57 @@
-# Create a new project
-create_project my_project ../output -part xc7a200tfbg484-2
-set_property target_language Verilog [current_project]
+# Set Paths
+set root_dir "./packetsentinel"
+set design_file "$root_dir/src/fifo/fifo_base.sv"
+set testbench_file "$root_dir/tb/fifo/fifo_base_tb.sv"
+set output_dir "$root_dir/output"
+set reports_dir "$root_dir/reports"
 
-# Add source files
-add_files ../src/fifo/fifo_base.sv
+# Create necessary directories if they don't exist
+file mkdir $output_dir
+file mkdir $reports_dir
 
-# Add constraints file
-add_files -fileset constrs_1 ../constraints/constr.xdc
+# Open a new project
+create_project fifo_project $output_dir -part xc7a200tfbg484-2 -force
 
-# Add testbench
-add_files -fileset sim_1 ../tb/fifo/fifo_base_TB.sv
-set_property top fifo_base_TB [get_filesets sim_1]
+# Set the top-level design and add files
+add_files -norecurse $design_file
+add_files -fileset sim_1 -norecurse $testbench_file
+set_property top fifo_base_tb [get_filesets sim_1]
 
-# Set synthesis and implementation strategies (Performance Optimized)
-set_property strategy Performance_Explore [get_runs synth_1]
-set_property strategy Performance_Explore [get_runs impl_1]
+# Linting (Syntax Check)
+puts "Running Linter..."
+check_syntax -files [get_files $design_file]
 
-# Run Synthesis
-launch_runs synth_1
-wait_on_run synth_1
+# Simulation
+puts "Running Simulation..."
+launch_simulation
+run all
+close_sim
 
-# Run Implementation
-launch_runs impl_1
-wait_on_run impl_1
+# Move Simulation Reports
+file rename -force fifo_project.sim $reports_dir/simulation_reports
+
+# Synthesis
+puts "Running Synthesis..."
+synth_design -top fifo_base -part xc7a200tfbg484-2
+write_checkpoint -force $reports_dir/post_synth.dcp
+report_timing_summary -file $reports_dir/timing_synth.rpt
+report_utilization -file $reports_dir/utilization_synth.rpt
+
+# Implementation
+puts "Running Implementation..."
+opt_design
+place_design
+route_design
+write_checkpoint -force $reports_dir/post_impl.dcp
+report_timing_summary -file $reports_dir/timing_impl.rpt
+report_power -file $reports_dir/power_impl.rpt
+report_utilization -file $reports_dir/utilization_impl.rpt
 
 # Generate Bitstream
-launch_runs impl_1 -to_step write_bitstream
-wait_on_run impl_1
+puts "Generating Bitstream..."
+write_bitstream -force $output_dir/fifo_base.bit
 
-# Run Simulation
-launch_simulation
-
-# Generate reports
-open_run impl_1
-report_utilization -file ../output/reports/utilization_report.txt
-report_timing_summary -file ../output/reports/timing_report.txt
-report_power -file ../output/reports/power_report.txt
-report_drc -file ../output/reports/drc_report.txt
-report_clock_utilization -file ../output/reports/clock_utilization_report.txt
-
-# Save and close the project
-close_project
+# Remove unwanted files (.jou and .log)
+puts "Cleaning up log and journal files..."
+file delete -force vivado.jou
+file delete -force vivado.log
