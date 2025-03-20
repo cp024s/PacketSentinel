@@ -17,5 +17,38 @@ module bloom_filter (
 )
 
 typedef enum logc [2:0] {
-    IDLE
-}
+    IDLE,
+    CAPTURE_HASH,
+    BRAM_READ,
+    CHECK_MATCH
+    GENERTE_OUTPUT
+} State_t present_state, next_state;
+
+ function automatic [HASH_WIDTH-1:0] jenkins_hash (input logic [31:0] data);
+    logic [31:0] hash;
+    begin
+      hash = 0;
+      hash = hash + data[7:0];
+      hash = hash + (hash << 10);
+      hash = hash ^ (hash >> 6);
+      
+      hash = hash + data[15:8];
+      hash = hash + (hash << 10);
+      hash = hash ^ (hash >> 6);
+      
+      hash = hash + data[23:16];
+      hash = hash + (hash << 10);
+      hash = hash ^ (hash >> 6);
+      
+      hash = hash + data[31:24];
+      hash = hash + (hash << 10);
+      hash = hash ^ (hash >> 6);
+      
+      hash = hash + (hash << 3);
+      hash = hash ^ (hash >> 11);
+      hash = hash + (hash << 15);
+      
+      jenkins_hash = hash[HASH_WIDTH-1:0];
+    end
+  endfunction
+
