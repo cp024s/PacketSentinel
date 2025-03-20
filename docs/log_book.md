@@ -34,7 +34,7 @@
 | 18, Mar  | Waveform analysis for FIFO and design development for MPD             |                                |
 | 19, Mar  | Code analysis and debugging for PRT module                            |                                |
 | 20, Mar  | Bloom Filter modifications to add into Master packet dealer           |                                |
-| 21, Mar  |                                                                       |                                |
+| 21, Mar  | Development of scripts for FIFO module                                |                                |
 | 22, Mar  |                                                                       |                                |
 | 23, Mar  |                                                                       |                                |
 | 24, Mar  |                                                                       |                                |
