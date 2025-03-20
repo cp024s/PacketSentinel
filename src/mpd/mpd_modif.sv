@@ -91,6 +91,26 @@ module MPD #(
     );
 
     //====================================================================
+    // BLOOM FILTER INSTANCE
+    //====================================================================
+    bloom_filter #(
+        .BIT_ARRAY_SIZE(1024),  // Example size, adjust as needed
+        .HASH_WIDTH($clog2(1024))  // Log2 of BIT_ARRAY_SIZE
+    ) bloom_filter_inst (
+        .clk(clk),
+        .rst_n(rst_n),
+        .enable(enable),
+        .src_ip(src_ip),
+        .dest_ip(dest_ip),
+        .tag(tag),
+        .safe(safe),
+        .output_valid(output_valid),
+        .header(header),
+        .out_tag(out_tag),
+        .busy(busy)
+    );
+
+    //====================================================================
     // INPUT FIFO INSTANCE
     //====================================================================
     fifo #(
