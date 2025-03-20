@@ -5,8 +5,8 @@ module MPD #(
     parameter NUM_SLOTS = 16
 )(
     // MPD Signals
-    input  logic                          CLK,
-    input  logic                          RST_N,
+    input  logic                          clk,
+    input  logic                          rst_n,
 
     //====================================================================
     // PRT - AXI COMMUNCATION
@@ -120,7 +120,7 @@ module MPD #(
         .ALMOST_EMPTY_THRESHOLD(2)
     ) ip_fifo (
         .clk(clk),
-        .rst(rst),
+        .rst_n(rst_n),
         .wr_en(wr_en),
         .rd_en(rd_en),
         .din(din),
