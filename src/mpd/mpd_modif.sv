@@ -6,20 +6,24 @@ module MPD #(
 )(
     // MPD Signals
     input  logic                          clk,
-    input  logic                          rst_n,
+    input  logic                          rst_n,+
 
     //====================================================================
-    // PRT - AXI COMMUNCATION
+    // PRT - BLOOM FILTER COMMUNICATION
     //====================================================================
+    input  logic                          enable,
+    input  logic [31:0]                   src_ip,
+    input  logic [31:0]                   dest_ip,
+    input  logic [15:0]                   tag,
+
+    output logic                          safe,
+    output logic                          output_valid,
+    output logic [63:0]                   header,
+    output logic [15:0]                   out_tag,
+    output logic                          busy,
 
     //====================================================================
-    // PRT - BLOOM FILTER COMMUNCATION
-    //====================================================================
-
-
-
-    //====================================================================
-    // PRT - MPD COMMUNCATION
+    // PRT - MPD COMMUNICATION
     //====================================================================
     // -------- Write Transaction Handshake --------
     output logic                          EN_start_writing_prt_entry,
@@ -45,16 +49,32 @@ module MPD #(
 
     output logic                          EN_read_prt_entry,
     input  logic                          RDY_read_prt_entry,
-    input  logic [DATA_WIDTH:0]           read_prt_entry,
+    input  logic [DATA_WIDTH-1:0]         read_prt_entry,
+
     // -------- Free Slot Check --------
     input  logic                          is_prt_slot_free,
-    input  logic                          RDY_is_prt_slot_free
+    input  logic                          RDY_is_prt_slot_free,
+
+    //====================================================================
+    // MPD - INPUT FIFO COMMUNICATION
+    //====================================================================
+    input  logic                          ip_wr_en,
+    input  logic                          ip_rd_en,
+    input  logic [DATA_WIDTH-1:0]         ip_din,
+    output logic [DATA_WIDTH-1:0]         ip_dout,
+    output logic                          ip_full,
+    output logic                          ip_empty,
+    
+    //====================================================================
+    // PRT - MPD OUTPUT COMMUNICATION
+    //====================================================================
+    input  logic                          op_wr_en,
+    input  logic                          op_rd_en,
+    input  logic [DATA_WIDTH-1:0]         op_din,
+    output logic [DATA_WIDTH-1:0]         op_dout,
+    output logic                          op_full,
+    output logic                          op_empty
 );
-
-//   All the internal logics, registers goes here
-
-// All the state machine logic goes here
-
 
     //====================================================================
     // PACKET REFERENCE TABLE (PRT) INSTANCE
@@ -93,68 +113,61 @@ module MPD #(
     //====================================================================
     // BLOOM FILTER INSTANCE
     //====================================================================
-    bloom_filter #(
-        .BIT_ARRAY_SIZE(1024),  // Example size, adjust as needed
-        .HASH_WIDTH($clog2(1024))  // Log2 of BIT_ARRAY_SIZE
+    bloom_filter_optimized #(
+        .BIT_ARRAY_SIZE(1024),
+        .HASH_WIDTH($clog2(1024))
     ) bloom_filter_inst (
-        .clk(clk),
-        .rst_n(rst_n),
-        .enable(enable),
-        .src_ip(src_ip),
-        .dest_ip(dest_ip),
-        .tag(tag),
-        .safe(safe),
-        .output_valid(output_valid),
-        .header(header),
-        .out_tag(out_tag),
-        .busy(busy)
+        .clk          (clk),
+        .rst_n        (rst_n),
+        .enable       (enable),
+        .src_ip       (src_ip),
+        .dest_ip      (dest_ip),
+        .tag          (tag),
+        .safe         (safe),
+        .output_valid (output_valid),
+        .header       (header),
+        .out_tag      (out_tag),
+        .busy         (busy)
     );
 
     //====================================================================
     // INPUT FIFO INSTANCE
     //====================================================================
     fifo #(
-        .DATA_WIDTH(32),
+        .DATA_WIDTH(DATA_WIDTH),
         .DEPTH(16),
         .ALMOST_FULL_THRESHOLD(14),
         .ALMOST_EMPTY_THRESHOLD(2)
     ) ip_fifo (
         .clk(clk),
         .rst_n(rst_n),
-        .wr_en(wr_en),
-        .rd_en(rd_en),
-        .din(din),
-        .dout(dout),
-        .full(full),
-        .empty(empty),
-  //  .almost_full(almost_full),
-  //  .almost_empty(almost_empty),
-  //  .lookahead_valid(lookahead_valid),
-  //  .lookahead_data(lookahead_data)
+        .wr_en(ip_wr_en),
+        .rd_en(ip_rd_en),
+        .din(ip_din),
+        .dout(ip_dout),
+        .full(ip_full),
+        .empty(ip_empty)
     );
+
     //====================================================================
     // OUTPUT FIFO INSTANCE
     //====================================================================
     fifo #(
-    .DATA_WIDTH(32),
-    .DEPTH(16),
-    .ALMOST_FULL_THRESHOLD(14),
-    .ALMOST_EMPTY_THRESHOLD(2)
+        .DATA_WIDTH(DATA_WIDTH),
+        .DEPTH(16),
+        .ALMOST_FULL_THRESHOLD(14),
+        .ALMOST_EMPTY_THRESHOLD(2)
     ) op_fifo (
-    .clk(clk),
-    .rst(rst),
-    .wr_en(wr_en),
-    .rd_en(rd_en),
-    .din(din),
-    .dout(dout),
-    .full(full),
-    .empty(empty),
-  //  .almost_full(almost_full),
-  //  .almost_empty(almost_empty),
-  //  .lookahead_valid(lookahead_valid),
-  //  .lookahead_data(lookahead_data)
-);
+        .clk(clk),
+        .rst_n(rst_n),
+        .wr_en(op_wr_en),
+        .rd_en(op_rd_en),
+        .din(op_din),
+        .dout(op_dout),
+        .full(op_full),
+        .empty(op_empty)
+    );
 
+    // MPD's FSM states to be implemented here
 
-    // MPD's FSM states are to be given here
 endmodule
